@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - College Attendance Management System</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+
+<body class="login-body">
+
+  <div class="login-card">
+    <div class="login-header">
+      <div class="logo">
+        <svg fill="none" stroke="currentColor" width="32" height="32" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z"></path>
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0112 20.055a11.952 11.952 0 01-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"></path>
+        </svg>
+        <span>Apex ERP</span>
+      </div>
+      <h2>Portal Login</h2>
+      <p>Select your role and enter credentials</p>
+    </div>
+
+    <div id="login-alert" class="alert alert-danger" style="display: none;"></div>
+
+    <form id="login-form">
+      <div class="form-group">
+        <label class="form-label" for="role-select">Select Role</label>
+        <select id="role-select" class="form-control" required>
+          <option value="student" selected>Student (@gprec.ac.in Only)</option>
+          <option value="faculty">Faculty</option>
+          <option value="admin">Administrator</option>
+        </select>
+      </div>
+
+      <!-- Student Google Auth Callout -->
+      <div id="student-auth-notice" class="alert alert-success" style="background:#eff6ff; color:#1d4ed8; border-color:#bfdbfe; margin-bottom:1.25rem;">
+        🎓 <strong>Student Login Requirement:</strong> Students must authenticate using Google with an official <strong>@gprec.ac.in</strong> email address.
+      </div>
+
+      <div id="credentials-fields">
+        <div class="form-group">
+          <label class="form-label" id="identifier-label" for="username-input">User ID / Roll Number / Email</label>
+          <input type="text" id="username-input" class="form-control" placeholder="e.g. 24CS099 or user@gprec.ac.in" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="password-input">Password</label>
+          <div class="password-input-wrap">
+            <input type="password" id="password-input" class="form-control" placeholder="Enter your password" />
+            <button type="button" class="toggle-password" id="toggle-pw-btn" aria-label="Toggle password visibility">👁️</button>
+          </div>
+        </div>
+
+        <button type="submit" id="submit-btn" class="btn btn-primary" style="width: 100%; padding: 0.8rem; margin-top: 0.5rem;">
+          Sign In with Credentials
+        </button>
+      </div>
+    </form>
+
+    <div id="google-auth-container" style="margin-top: 1rem; text-align: center;">
+      <div id="or-divider" style="display:flex; align-items:center; gap:0.5rem; margin:1rem 0;">
+        <div style="flex:1; height:1px; background:var(--border);"></div>
+        <span style="font-size:0.75rem; color:var(--text-muted); font-weight:700;">INSTITUTIONAL GOOGLE AUTH</span>
+        <div style="flex:1; height:1px; background:var(--border);"></div>
+      </div>
+
+      <button type="button" id="google-login-btn" class="btn btn-primary" style="width:100%; padding:0.85rem; display:flex; align-items:center; justify-content:center; gap:0.6rem; font-weight:700; background:linear-gradient(135deg, #4285F4, #34A853); border:none; box-shadow:0 4px 12px rgba(66, 133, 244, 0.3);">
+        <svg width="20" height="20" viewBox="0 0 24 24" style="background:#fff; border-radius:50%; padding:2px;">
+          <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.665-5.17 3.665-9.17z"/>
+          <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.29v3.15C3.26 21.3 7.31 24 12 24z"/>
+          <path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.29C.47 8.21 0 10.05 0 12s.47 3.79 1.29 5.42l3.99-3.15z"/>
+          <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.31 0 3.26 2.7 1.29 6.58l3.99 3.15c.95-2.83 3.6-4.98 6.72-4.98z"/>
+        </svg>
+        Sign in with Google (@gprec.ac.in)
+      </button>
+    </div>
+
+
+    <div style="text-align: center; margin-top: 1.5rem; font-size: 0.88rem; color: var(--text-muted);">
+      Don't have an account? <a href="#" id="open-register-link" style="font-weight: 700; color: var(--primary);">Create New Account</a>
+      <div style="margin-top: 0.75rem;">
+        <a href="index.html">← Back to Home Page</a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Registration Modal -->
+  <div class="modal-overlay" id="register-modal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3>Create Personal Account</h3>
+        <button class="btn btn-outline btn-sm" id="close-reg-modal">✕</button>
+      </div>
+      <form id="register-form">
+        <div class="modal-body">
+          <div id="reg-alert" class="alert alert-danger" style="display:none;"></div>
+          
+          <div class="form-group">
+            <label class="form-label" for="reg-role">Account Role</label>
+            <select id="reg-role" class="form-control" required>
+              <option value="student">Student</option>
+              <option value="faculty">Faculty</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="reg-name">Full Name</label>
+            <input type="text" id="reg-name" class="form-control" placeholder="e.g. Tejeswar Barakam" required />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="reg-identifier">Roll Number / Faculty ID</label>
+            <input type="text" id="reg-identifier" class="form-control" placeholder="e.g. 24CS099" required />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="reg-email">Email Address</label>
+            <input type="email" id="reg-email" class="form-control" placeholder="e.g. tejeswar@student.edu" required />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="reg-password">Password</label>
+            <input type="password" id="reg-password" class="form-control" placeholder="Create a secure password" required />
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline" id="cancel-reg-modal">Cancel</button>
+          <button type="submit" id="reg-submit-btn" class="btn btn-primary">Create Account</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+
+  <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-auth-compat.js"></script>
+  <script src="js/firebase-config.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/common.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // If already authenticated, redirect to appropriate dashboard
+      if (Auth.isAuthenticated()) {
+        const user = Auth.getUser();
+        if (user && user.role) {
+          Auth.redirectToDashboard(user.role);
+          return;
+        }
+      }
+
+      const roleSelect = document.getElementById('role-select');
+      const identifierLabel = document.getElementById('identifier-label');
+      const usernameInput = document.getElementById('username-input');
+      const togglePwBtn = document.getElementById('toggle-pw-btn');
+      const passwordInput = document.getElementById('password-input');
+      const loginForm = document.getElementById('login-form');
+      const loginAlert = document.getElementById('login-alert');
+      const submitBtn = document.getElementById('submit-btn');
+      const studentNotice = document.getElementById('student-auth-notice');
+      const credentialsFields = document.getElementById('credentials-fields');
+
+      const applyRoleUI = () => {
+        const role = roleSelect.value;
+        if (role === 'student') {
+          studentNotice.style.display = 'block';
+          credentialsFields.style.display = 'none'; // Only allow Google Authentication for Students
+        } else if (role === 'faculty') {
+          studentNotice.style.display = 'none';
+          credentialsFields.style.display = 'block';
+          identifierLabel.textContent = 'Faculty ID / Email';
+          usernameInput.placeholder = 'e.g. FAC001';
+        } else if (role === 'admin') {
+          studentNotice.style.display = 'none';
+          credentialsFields.style.display = 'block';
+          identifierLabel.textContent = 'Admin Email / Username';
+          usernameInput.placeholder = 'e.g. admin@college.edu';
+        }
+      };
+
+      roleSelect.addEventListener('change', applyRoleUI);
+      applyRoleUI();
+
+
+      // Show / Hide Password Toggle
+      togglePwBtn.addEventListener('click', () => {
+        if (passwordInput.type === 'password') {
+          passwordInput.type = 'text';
+          togglePwBtn.textContent = '🙈';
+        } else {
+          passwordInput.type = 'password';
+          togglePwBtn.textContent = '👁️';
+        }
+      });
+
+      // Submit Form
+      loginForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        loginAlert.style.display = 'none';
+
+        const role = roleSelect.value;
+        const username = usernameInput.value.trim();
+        const password = passwordInput.value;
+
+        if (!username || !password) {
+          loginAlert.textContent = 'Please fill out all required fields.';
+          loginAlert.style.display = 'block';
+          return;
+        }
+
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Authenticating...';
+
+        try {
+          const res = await API.post('/auth/login', { username, password, role });
+          
+          if (res.success) {
+            Auth.saveSession(res.token, res.user);
+            UI.showToast('Login successful! Redirecting...', 'success');
+            setTimeout(() => {
+              Auth.redirectToDashboard(res.user.role);
+            }, 500);
+          }
+        } catch (err) {
+          loginAlert.textContent = err.message || 'Invalid credentials or connection error';
+          loginAlert.style.display = 'block';
+        } finally {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Sign In';
+        }
+      });
+      // Registration Modal Handlers
+      const regModal = document.getElementById('register-modal');
+      const openRegLink = document.getElementById('open-register-link');
+      const closeRegModal = document.getElementById('close-reg-modal');
+      const cancelRegModal = document.getElementById('cancel-reg-modal');
+      const registerForm = document.getElementById('register-form');
+      const regAlert = document.getElementById('reg-alert');
+
+      if (openRegLink) openRegLink.addEventListener('click', (e) => { e.preventDefault(); regModal.classList.add('active'); });
+      if (closeRegModal) closeRegModal.addEventListener('click', () => regModal.classList.remove('active'));
+      if (cancelRegModal) cancelRegModal.addEventListener('click', () => regModal.classList.remove('active'));
+
+      if (registerForm) {
+        registerForm.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          regAlert.style.display = 'none';
+
+          const role = document.getElementById('reg-role').value;
+          const name = document.getElementById('reg-name').value.trim();
+          const identifier = document.getElementById('reg-identifier').value.trim();
+          const email = document.getElementById('reg-email').value.trim();
+          const password = document.getElementById('reg-password').value;
+
+          try {
+            const res = await API.post('/auth/register', { role, name, identifier, email, password });
+            if (res.success) {
+              Auth.saveSession(res.token, res.user);
+              UI.showToast('Account created successfully! Redirecting...', 'success');
+              setTimeout(() => {
+                Auth.redirectToDashboard(res.user.role);
+              }, 500);
+            }
+          } catch (err) {
+            regAlert.textContent = err.message || 'Registration failed';
+            regAlert.style.display = 'block';
+          }
+        });
+      }
+      // Google Sign-In Handler with Strict @gprec.ac.in Domain Check
+      const googleLoginBtn = document.getElementById('google-login-btn');
+      if (googleLoginBtn) {
+        googleLoginBtn.addEventListener('click', async () => {
+          loginAlert.style.display = 'none';
+          const role = roleSelect.value;
+
+          try {
+            const provider = new firebase.auth.GoogleAuthProvider();
+            provider.setCustomParameters({ prompt: 'select_account', hd: 'gprec.ac.in' });
+
+            const result = await firebase.auth().signInWithPopup(provider);
+            const user = result.user;
+            const email = user.email || '';
+
+            // Enforce Domain Restriction
+            if (!email.toLowerCase().endsWith('@gprec.ac.in')) {
+              await firebase.auth().signOut();
+              throw new Error(`Access Restricted! Your email (${email}) is not an official @gprec.ac.in address.`);
+            }
+
+            const res = await API.post('/auth/firebase-login', {
+              email,
+              role,
+              firebaseUid: user.uid
+            });
+
+            if (res.success) {
+              Auth.saveSession(res.token, res.user);
+              UI.showToast(`Welcome ${res.user.profile?.name || user.displayName}! Redirecting...`, 'success');
+              setTimeout(() => {
+                Auth.redirectToDashboard(res.user.role);
+              }, 500);
+            }
+          } catch (err) {
+            console.error('Google Sign-In Error:', err);
+            loginAlert.textContent = err.message || 'Google sign-in failed';
+            loginAlert.style.display = 'block';
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>
+
+

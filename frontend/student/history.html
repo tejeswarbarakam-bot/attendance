@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Attendance History - Student Portal</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/dashboard.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+
+  <div class="app-wrapper">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="logo-icon">🎓</div>
+        <div class="logo-text">Student Portal</div>
+      </div>
+      <ul class="sidebar-menu">
+        <li><a href="dashboard.html"><span>🏠</span> Dashboard</a></li>
+        <li><a href="attendance.html"><span>📚</span> My Attendance</a></li>
+        <li><a href="history.html" class="active"><span>📜</span> History</a></li>
+        <li><a href="notifications.html"><span>🔔</span> Notifications</a></li>
+        <li><a href="profile.html"><span>👤</span> Profile</a></li>
+        <li style="margin-top: 2rem;"><a href="#" onclick="Auth.logout()"><span>🚪</span> Logout</a></li>
+      </ul>
+      <div class="sidebar-footer">
+        <div class="user-profile-badge">
+          <div class="avatar" id="user-avatar">S</div>
+          <div class="user-info">
+            <div class="name" id="user-display-name">Student Name</div>
+            <div class="role" id="user-display-role">Student</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <div class="main-wrapper">
+      <header class="top-navbar">
+        <button class="hamburger-btn" id="hamburger-btn">☰</button>
+        <div class="page-title">
+          <h1>Attendance History</h1>
+          <p>Filter & view past daily session logs</p>
+        </div>
+        <div class="top-navbar-actions">
+          <button class="btn btn-outline btn-sm" onclick="Auth.logout()">Logout</button>
+        </div>
+      </header>
+
+      <main class="content-container">
+        <!-- Filter Bar -->
+        <div class="filter-bar">
+          <div class="filter-group">
+            <label for="filter-subject">Subject</label>
+            <select id="filter-subject" class="form-control">
+              <option value="">All Subjects</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label for="filter-date">Date</label>
+            <input type="date" id="filter-date" class="form-control" />
+          </div>
+
+          <div class="filter-group">
+            <label for="filter-status">Status</label>
+            <select id="filter-status" class="form-control">
+              <option value="">All Statuses</option>
+              <option value="Present">Present</option>
+              <option value="Absent">Absent</option>
+            </select>
+          </div>
+
+          <div style="margin-top: auto;">
+            <button id="filter-btn" class="btn btn-primary btn-sm" style="height: 42px;">Apply Filter</button>
+          </div>
+        </div>
+
+        <!-- History Table -->
+        <div class="table-card">
+          <div class="table-responsive">
+            <table class="custom-table">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Subject</th>
+                  <th>Period</th>
+                  <th>Faculty</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="history-tbody">
+                <tr><td colspan="5" style="text-align:center;">Loading history...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="../js/config.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/api.js"></script>
+  <script src="../js/common.js"></script>
+  <script src="../js/student.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      StudentPortal.initAttendanceHistory();
+    });
+  </script>
+</body>
+</html>

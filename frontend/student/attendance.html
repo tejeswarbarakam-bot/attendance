@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Subject-Wise Attendance - Student Portal</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/dashboard.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+
+  <div class="app-wrapper">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="logo-icon">🎓</div>
+        <div class="logo-text">Student Portal</div>
+      </div>
+      <ul class="sidebar-menu">
+        <li><a href="dashboard.html"><span>🏠</span> Dashboard</a></li>
+        <li><a href="attendance.html" class="active"><span>📚</span> My Attendance</a></li>
+        <li><a href="history.html"><span>📜</span> History</a></li>
+        <li><a href="notifications.html"><span>🔔</span> Notifications</a></li>
+        <li><a href="profile.html"><span>👤</span> Profile</a></li>
+        <li style="margin-top: 2rem;"><a href="#" onclick="Auth.logout()"><span>🚪</span> Logout</a></li>
+      </ul>
+      <div class="sidebar-footer">
+        <div class="user-profile-badge">
+          <div class="avatar" id="user-avatar">S</div>
+          <div class="user-info">
+            <div class="name" id="user-display-name">Student Name</div>
+            <div class="role" id="user-display-role">Student</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <div class="main-wrapper">
+      <header class="top-navbar">
+        <button class="hamburger-btn" id="hamburger-btn">☰</button>
+        <div class="page-title">
+          <h1>Subject-Wise Attendance</h1>
+          <p>Detailed performance per course subject</p>
+        </div>
+        <div class="top-navbar-actions">
+          <button class="btn btn-outline btn-sm" onclick="Auth.logout()">Logout</button>
+        </div>
+      </header>
+
+      <main class="content-container">
+        <!-- Shortage Warning & Class Calculation -->
+        <div id="subject-shortage-warning" class="shortage-warning-banner" style="display: none;">
+          <div class="icon">⚠️</div>
+          <div class="text-content">
+            <h4>Shortage Action Plan Required</h4>
+            <p id="classes-needed-text">You are below 75% attendance threshold in one or more subjects.</p>
+          </div>
+        </div>
+
+        <!-- Subject Wise Attendance Table -->
+        <div class="table-card">
+          <div class="table-header">
+            <h3>Subject Attendance Summary</h3>
+          </div>
+          <div class="table-responsive">
+            <table class="custom-table">
+              <thead>
+                <tr>
+                  <th>Subject Code</th>
+                  <th>Subject Name</th>
+                  <th>Present</th>
+                  <th>Absent</th>
+                  <th>Total Classes</th>
+                  <th>Percentage</th>
+                  <th>Status Indicator</th>
+                </tr>
+              </thead>
+              <tbody id="subject-attendance-tbody">
+                <tr><td colspan="7" style="text-align:center;">Loading subjects...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="../js/config.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/api.js"></script>
+  <script src="../js/common.js"></script>
+  <script src="../js/student.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      StudentPortal.initSubjectAttendance();
+    });
+  </script>
+</body>
+</html>

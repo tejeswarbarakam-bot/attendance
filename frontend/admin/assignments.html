@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Faculty Assignments - Admin ERP</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/dashboard.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+
+  <div class="app-wrapper">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="logo-icon">🛡️</div>
+        <div class="logo-text">Admin ERP</div>
+      </div>
+      <ul class="sidebar-menu">
+        <li><a href="dashboard.html"><span>🏠</span> Dashboard</a></li>
+        <li><a href="students.html"><span>🎓</span> Students</a></li>
+        <li><a href="faculty.html"><span>👨‍🏫</span> Faculty</a></li>
+        <li><a href="departments.html"><span>🏢</span> Departments</a></li>
+        <li><a href="subjects.html"><span>📖</span> Subjects</a></li>
+        <li><a href="classes.html"><span>🏫</span> Classes</a></li>
+        <li><a href="assignments.html" class="active"><span>🔗</span> Assignments</a></li>
+        <li><a href="reports.html"><span>📊</span> Reports</a></li>
+        <li><a href="settings.html"><span>⚙️</span> Settings</a></li>
+        <li style="margin-top: 2rem;"><a href="#" onclick="Auth.logout()"><span>🚪</span> Logout</a></li>
+      </ul>
+      <div class="sidebar-footer">
+        <div class="user-profile-badge">
+          <div class="avatar" id="user-avatar">A</div>
+          <div class="user-info">
+            <div class="name" id="user-display-name">System Administrator</div>
+            <div class="role" id="user-display-role">Admin</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <div class="main-wrapper">
+      <header class="top-navbar">
+        <button class="hamburger-btn" id="hamburger-btn">☰</button>
+        <div class="page-title">
+          <h1>Faculty - Subject Assignment</h1>
+          <p>Map faculty members to teaching subjects and class sections</p>
+        </div>
+        <div class="top-navbar-actions">
+          <button class="btn btn-primary btn-sm" onclick="UI.openModal('add-assignment-modal')">+ Assign Faculty</button>
+          <button class="btn btn-outline btn-sm" onclick="Auth.logout()">Logout</button>
+        </div>
+      </header>
+
+      <main class="content-container">
+        <div class="table-card">
+          <div class="table-responsive">
+            <table class="custom-table">
+              <thead>
+                <tr>
+                  <th>Faculty Member</th>
+                  <th>Assigned Subject</th>
+                  <th>Target Class</th>
+                  <th>Semester</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="assignments-table-tbody">
+                <tr><td colspan="5" style="text-align:center;">Loading assignments...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Add Assignment Modal -->
+  <div class="modal-overlay" id="add-assignment-modal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3>Assign Faculty to Class & Subject</h3>
+        <button class="btn btn-outline btn-sm" onclick="UI.closeModal('add-assignment-modal')">✕</button>
+      </div>
+      <form id="add-assignment-form">
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="form-label">Select Faculty</label>
+            <select id="assign-fac-select" class="form-control" required></select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Select Subject</label>
+            <select id="assign-sub-select" class="form-control" required></select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Select Class / Section</label>
+            <select id="assign-class-select" class="form-control" required></select>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline" onclick="UI.closeModal('add-assignment-modal')">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Assignment</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="../js/config.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/api.js"></script>
+  <script src="../js/common.js"></script>
+  <script src="../js/admin.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      AdminPortal.initAssignmentsPage();
+    });
+  </script>
+</body>
+</html>

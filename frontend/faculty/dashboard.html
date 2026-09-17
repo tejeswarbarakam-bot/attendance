@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Faculty Dashboard - Attendance ERP</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/dashboard.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+
+  <div class="app-wrapper">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="logo-icon">👨‍🏫</div>
+        <div class="logo-text">Faculty Portal</div>
+      </div>
+      <ul class="sidebar-menu">
+        <li><a href="dashboard.html" class="active"><span>🏠</span> Dashboard</a></li>
+        <li><a href="mark-attendance.html"><span>📝</span> Mark Attendance</a></li>
+        <li><a href="history.html"><span>📜</span> History</a></li>
+        <li><a href="reports.html"><span>📊</span> Reports</a></li>
+        <li><a href="profile.html"><span>👤</span> Profile</a></li>
+        <li style="margin-top: 2rem;"><a href="#" onclick="Auth.logout()"><span>🚪</span> Logout</a></li>
+      </ul>
+      <div class="sidebar-footer">
+        <div class="user-profile-badge">
+          <div class="avatar" id="user-avatar">F</div>
+          <div class="user-info">
+            <div class="name" id="user-display-name">Faculty Name</div>
+            <div class="role" id="user-display-role">Faculty</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <div class="main-wrapper">
+      <header class="top-navbar">
+        <button class="hamburger-btn" id="hamburger-btn">☰</button>
+        <div class="page-title">
+          <h1>Faculty Dashboard</h1>
+          <p>Class schedules & attendance management</p>
+        </div>
+        <div class="top-navbar-actions">
+          <a href="mark-attendance.html" class="btn btn-primary btn-sm">+ Mark Attendance</a>
+          <button class="btn btn-outline btn-sm" onclick="Auth.logout()">Logout</button>
+        </div>
+      </header>
+
+      <main class="content-container">
+        <!-- Faculty Metrics Grid -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-info">
+              <div class="title">Assigned Classes</div>
+              <div class="value" id="stat-assigned-classes">0</div>
+              <div class="subtext" style="color:var(--text-muted)">Active sections</div>
+            </div>
+            <div class="stat-icon blue">🏫</div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-info">
+              <div class="title">Assigned Subjects</div>
+              <div class="value" id="stat-assigned-subjects">0</div>
+              <div class="subtext" style="color:var(--primary)">Courses</div>
+            </div>
+            <div class="stat-icon purple">📖</div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-info">
+              <div class="title">Today's Classes Marked</div>
+              <div class="value" id="stat-today-marked">0</div>
+              <div class="subtext" style="color:var(--success)">Sessions</div>
+            </div>
+            <div class="stat-icon green">✅</div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-info">
+              <div class="title">Total Sessions Submitted</div>
+              <div class="value" id="stat-total-submitted">0</div>
+              <div class="subtext" style="color:var(--text-muted)">All time</div>
+            </div>
+            <div class="stat-icon amber">📈</div>
+          </div>
+        </div>
+
+        <!-- Assigned Classes & Quick Mark Table -->
+        <div class="table-card">
+          <div class="table-header">
+            <h3>My Assigned Classes & Subjects</h3>
+            <a href="mark-attendance.html" class="btn btn-primary btn-sm">Mark New Session</a>
+          </div>
+          <div class="table-responsive">
+            <table class="custom-table">
+              <thead>
+                <tr>
+                  <th>Subject Code</th>
+                  <th>Subject Name</th>
+                  <th>Class / Section</th>
+                  <th>Semester</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="assigned-classes-tbody">
+                <tr><td colspan="5" style="text-align:center;">Loading assigned classes...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="../js/config.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/api.js"></script>
+  <script src="../js/common.js"></script>
+  <script src="../js/faculty.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      FacultyPortal.initDashboard();
+    });
+  </script>
+</body>
+</html>

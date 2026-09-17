@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Dashboard - Attendance ERP</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/dashboard.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+
+  <div class="app-wrapper">
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="logo-icon">🎓</div>
+        <div class="logo-text">Student Portal</div>
+      </div>
+
+      <ul class="sidebar-menu">
+        <li><a href="dashboard.html" class="active"><span>🏠</span> Dashboard</a></li>
+        <li><a href="attendance.html"><span>📚</span> My Attendance</a></li>
+        <li><a href="history.html"><span>📜</span> History</a></li>
+        <li><a href="notifications.html"><span>🔔</span> Notifications</a></li>
+        <li><a href="profile.html"><span>👤</span> Profile</a></li>
+        <li style="margin-top: 2rem;"><a href="#" onclick="Auth.logout()"><span>🚪</span> Logout</a></li>
+      </ul>
+
+      <div class="sidebar-footer">
+        <div class="user-profile-badge">
+          <div class="avatar" id="user-avatar">S</div>
+          <div class="user-info">
+            <div class="name" id="user-display-name">Student Name</div>
+            <div class="role" id="user-display-role">Student</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <div class="main-wrapper">
+      <header class="top-navbar">
+        <button class="hamburger-btn" id="hamburger-btn">☰</button>
+        <div class="page-title">
+          <h1>Student Dashboard</h1>
+          <p>Real-time attendance summary & statistics</p>
+        </div>
+        <div class="top-navbar-actions">
+          <a href="notifications.html" class="notification-bell">🔔</a>
+          <button class="btn btn-outline btn-sm" onclick="Auth.logout()">Logout</button>
+        </div>
+      </header>
+
+      <main class="content-container">
+        <!-- Shortage Warning Callout Banner -->
+        <div id="shortage-warning-box" class="shortage-warning-banner" style="display: none;">
+          <div class="icon">⚠️</div>
+          <div class="text-content">
+            <h4>Attendance Shortage Warning</h4>
+            <p id="shortage-pct-msg">Your overall attendance is below the required 75%. Please attend upcoming classes to avoid eligibility restrictions.</p>
+          </div>
+        </div>
+
+        <!-- Metrics Cards Grid -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-info">
+              <div class="title">Total Classes</div>
+              <div class="value" id="stat-total-classes">0</div>
+              <div class="subtext" style="color:var(--text-muted)">Conducted so far</div>
+            </div>
+            <div class="stat-icon blue">📚</div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-info">
+              <div class="title">Classes Present</div>
+              <div class="value" id="stat-present-count">0</div>
+              <div class="subtext" style="color:var(--success)">Attended</div>
+            </div>
+            <div class="stat-icon green">✅</div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-info">
+              <div class="title">Classes Absent</div>
+              <div class="value" id="stat-absent-count">0</div>
+              <div class="subtext" style="color:var(--danger)">Missed</div>
+            </div>
+            <div class="stat-icon red">❌</div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-info">
+              <div class="title">Overall Percentage</div>
+              <div class="value" id="stat-overall-pct">0%</div>
+              <div class="subtext" style="color:var(--primary)">Minimum 75% required</div>
+            </div>
+            <div class="stat-icon purple">📊</div>
+          </div>
+        </div>
+
+        <!-- Progress Circle Component & Quick Actions -->
+        <div class="progress-circle-wrap">
+          <div id="student-circle-chart"></div>
+          <div>
+            <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem;">Attendance Status Overview</h3>
+            <p style="color: var(--text-muted); max-width: 500px; font-size: 0.95rem;">
+              Your attendance percentage is dynamically calculated across all assigned subjects for the current semester.
+            </p>
+            <div style="margin-top: 1rem;">
+              <a href="attendance.html" class="btn btn-primary btn-sm">View Subject Breakdown →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recent Attendance History Table -->
+        <div class="table-card">
+          <div class="table-header">
+            <h3>Recent Attendance Records</h3>
+            <a href="history.html" style="font-size: 0.875rem; font-weight: 600;">View All History →</a>
+          </div>
+          <div class="table-responsive">
+            <table class="custom-table">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Subject</th>
+                  <th>Period</th>
+                  <th>Faculty</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="recent-history-tbody">
+                <tr><td colspan="5" style="text-align:center;">Loading records...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="../js/config.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/api.js"></script>
+  <script src="../js/common.js"></script>
+  <script src="../js/student.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      StudentPortal.initDashboard();
+    });
+  </script>
+</body>
+</html>

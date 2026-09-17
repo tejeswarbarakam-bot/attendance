@@ -1,0 +1,128 @@
+/* ==========================================================================
+   COLLEGE ATTENDANCE MANAGEMENT SYSTEM - RESPONSIVE MOBILE & TABLET STYLES
+   ========================================================================== */
+
+/* Breakpoint: Tablets & Smaller Desktops (<= 1024px) */
+@media (max-width: 1024px) {
+  .sidebar {
+    transform: translateX(-100%);
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+    box-shadow: 10px 0 30px rgba(0, 0, 0, 0.2);
+  }
+
+  .main-wrapper {
+    margin-left: 0;
+  }
+
+  .hamburger-btn {
+    display: block;
+  }
+
+  .flow-container {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .flow-arrow {
+    transform: rotate(90deg);
+  }
+}
+
+/* Breakpoint: Tablets (<= 768px) */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2.25rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+
+  .top-navbar {
+    padding: 0 1rem;
+  }
+
+  .content-container {
+    padding: 1.25rem;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
+  }
+
+  .progress-circle-wrap {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+
+  .filter-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filter-group {
+    width: 100%;
+  }
+
+  .table-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .shortage-warning-banner {
+    flex-direction: column;
+  }
+}
+
+/* Breakpoint: Mobile Browsers (<= 480px / 414px / 390px / 375px / 320px) */
+@media (max-width: 480px) {
+  .landing-header {
+    padding: 0.85rem 1rem;
+  }
+
+  .nav-links {
+    display: none; /* Hide top menu on small screens, rely on CTA */
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+  }
+
+  .login-card {
+    padding: 1.5rem;
+  }
+
+  .custom-table th, .custom-table td {
+    padding: 0.75rem 0.85rem;
+    font-size: 0.825rem;
+  }
+
+  .attendance-radio-group {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .modal-card {
+    margin: 0.5rem;
+  }
+
+  .toast-container {
+    left: 1rem;
+    right: 1rem;
+    bottom: 1rem;
+  }
+
+  .toast {
+    min-width: 0;
+    width: 100%;
+  }
+}

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>College Attendance Management System - Smart, Secure & Simple</title>
+  <meta name="description" content="Centralized College Attendance Management System with real-time student attendance tracking, faculty marking portal, and admin analytics.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Landing Header -->
+  <header class="landing-header">
+    <div class="brand-logo">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z"></path>
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0112 20.055a11.952 11.952 0 01-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"></path>
+      </svg>
+      <span>Apex Attendance ERP</span>
+    </div>
+
+    <ul class="nav-links">
+      <li><a href="#features">Features</a></li>
+      <li><a href="#how-it-works">How It Works</a></li>
+      <li><a href="#about">About</a></li>
+    </ul>
+
+    <div>
+      <a href="login.html" class="btn btn-primary">Login to Portal</a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-badge">✨ Next-Generation Academic ERP</div>
+    <h1 class="hero-title">
+      College Attendance <span>Management System</span>
+    </h1>
+    <p class="hero-subtitle">
+      Smart, Secure, and Simple attendance tracking designed for modern colleges. Empower students, faculty, and administrators with real-time insights and automated shortage warnings.
+    </p>
+
+    <div class="hero-actions">
+      <a href="login.html" class="btn btn-primary" style="padding: 0.85rem 2rem; font-size: 1rem;">Login Now</a>
+      <a href="#features" class="btn btn-outline" style="padding: 0.85rem 2rem; font-size: 1rem;">Learn More</a>
+    </div>
+  </section>
+
+  <!-- Feature Cards Grid -->
+  <section id="features" class="features-section">
+    <h2 class="section-title">Comprehensive System Features</h2>
+    <p class="section-subtitle">Everything your institution needs to streamline attendance recording and reporting.</p>
+
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🎓</div>
+        <h3 class="feature-title">Student Attendance</h3>
+        <p class="feature-desc">Students can view overall percentage, subject-wise breakdowns, history records, and receive automatic shortage warnings.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">👨‍🏫</div>
+        <h3 class="feature-title">Faculty Attendance Portal</h3>
+        <p class="feature-desc">Faculty can mark attendance for assigned classes, toggle bulk present/absent states, search students, and edit logs.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <h3 class="feature-title">Real-Time Records</h3>
+        <p class="feature-desc">Instant synchronization with MongoDB Atlas database ensures zero delays and immediate availability of data.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">📊</div>
+        <h3 class="feature-title">Attendance Analytics</h3>
+        <p class="feature-desc">Interactive dashboard analytics for admins to monitor department performance, monthly trends, and low-attendance alerts.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">📄</div>
+        <h3 class="feature-title">Reports & Export</h3>
+        <p class="feature-desc">Generate student, subject, class, and date-wise reports with single-click export to CSV, PDF, or printable formats.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🔒</div>
+        <h3 class="feature-title">Secure & Compliant</h3>
+        <p class="feature-desc">Protected with JWT authentication, bcrypt password hashing, role-based authorization, and comprehensive audit logging.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works Flow -->
+  <section id="how-it-works" class="flow-section">
+    <div style="text-align: center; margin-bottom: 3rem;">
+      <h2 class="section-title">How It Works</h2>
+      <p class="section-subtitle">Simple 4-step process for all campus users.</p>
+    </div>
+
+    <div class="flow-container">
+      <div class="flow-step">
+        <div class="step-number">1</div>
+        <h4>User Login</h4>
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem;">Authenticate with your Roll No, Faculty ID, or Admin Email.</p>
+      </div>
+
+      <div class="flow-arrow">➔</div>
+
+      <div class="flow-step">
+        <div class="step-number">2</div>
+        <h4>Role Verification</h4>
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem;">System verifies JWT token and loads your dedicated dashboard.</p>
+      </div>
+
+      <div class="flow-arrow">➔</div>
+
+      <div class="flow-step">
+        <div class="step-number">3</div>
+        <h4>Manage / View</h4>
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem;">Faculty mark attendance; Students track attendance %; Admin manages campus.</p>
+      </div>
+
+      <div class="flow-arrow">➔</div>
+
+      <div class="flow-step">
+        <div class="step-number">4</div>
+        <h4>Reports & Alerts</h4>
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem;">Automated shortage alerts sent dynamically and reports generated.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="landing-footer">
+    <div class="footer-container">
+      <div>
+        <div class="footer-brand">Apex Institute of Technology</div>
+        <p style="font-size: 0.9rem;">Empowering education through smart academic ERP solutions.</p>
+      </div>
+
+      <div>
+        <h4 style="color: #fff; margin-bottom: 1rem;">Quick Links</h4>
+        <p><a href="login.html" style="color: inherit;">Login Portal</a></p>
+        <p><a href="#features" style="color: inherit;">Features Overview</a></p>
+      </div>
+
+      <div>
+        <h4 style="color: #fff; margin-bottom: 1rem;">Contact Support</h4>
+        <p style="font-size: 0.9rem;">Email: support@college.edu</p>
+        <p style="font-size: 0.9rem;">Phone: +1 800-123-4567</p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      &copy; 2026 Apex Institute of Technology & Science. All Rights Reserved.
+    </div>
+  </footer>
+
+</body>
+</html>

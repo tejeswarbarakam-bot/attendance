@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Management - Admin ERP</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/dashboard.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+
+  <div class="app-wrapper">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="logo-icon">🛡️</div>
+        <div class="logo-text">Admin ERP</div>
+      </div>
+      <ul class="sidebar-menu">
+        <li><a href="dashboard.html"><span>🏠</span> Dashboard</a></li>
+        <li><a href="students.html" class="active"><span>🎓</span> Students</a></li>
+        <li><a href="faculty.html"><span>👨‍🏫</span> Faculty</a></li>
+        <li><a href="departments.html"><span>🏢</span> Departments</a></li>
+        <li><a href="subjects.html"><span>📖</span> Subjects</a></li>
+        <li><a href="classes.html"><span>🏫</span> Classes</a></li>
+        <li><a href="assignments.html"><span>🔗</span> Assignments</a></li>
+        <li><a href="reports.html"><span>📊</span> Reports</a></li>
+        <li><a href="settings.html"><span>⚙️</span> Settings</a></li>
+        <li style="margin-top: 2rem;"><a href="#" onclick="Auth.logout()"><span>🚪</span> Logout</a></li>
+      </ul>
+      <div class="sidebar-footer">
+        <div class="user-profile-badge">
+          <div class="avatar" id="user-avatar">A</div>
+          <div class="user-info">
+            <div class="name" id="user-display-name">System Administrator</div>
+            <div class="role" id="user-display-role">Admin</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <div class="main-wrapper">
+      <header class="top-navbar">
+        <button class="hamburger-btn" id="hamburger-btn">☰</button>
+        <div class="page-title">
+          <h1>Student Directory & Management</h1>
+          <p>Register, update, and manage student accounts</p>
+        </div>
+        <div class="top-navbar-actions">
+          <button class="btn btn-primary btn-sm" onclick="UI.openModal('add-student-modal')">+ Add New Student</button>
+          <button class="btn btn-outline btn-sm" onclick="Auth.logout()">Logout</button>
+        </div>
+      </header>
+
+      <main class="content-container">
+        <!-- Search Bar -->
+        <div class="filter-bar">
+          <div class="filter-group">
+            <label for="search-student">Search Directory</label>
+            <input type="text" id="search-student" class="form-control" placeholder="Search by Roll No, Name, or Email..." />
+          </div>
+        </div>
+
+        <div class="table-card">
+          <div class="table-responsive">
+            <table class="custom-table">
+              <thead>
+                <tr>
+                  <th>Student ID</th>
+                  <th>Roll No</th>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Department</th>
+                  <th>Year / Semester</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="students-table-tbody">
+                <tr><td colspan="7" style="text-align:center;">Loading students...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Add Student Modal -->
+  <div class="modal-overlay" id="add-student-modal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3>Add New Student</h3>
+        <button class="btn btn-outline btn-sm" onclick="UI.closeModal('add-student-modal')">✕</button>
+      </div>
+      <form id="add-student-form">
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="form-label">Student ID</label>
+            <input type="text" id="add-student-id" class="form-control" placeholder="e.g. 24CS006" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Roll Number</label>
+            <input type="text" id="add-student-roll" class="form-control" placeholder="e.g. 24CS006" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Full Name</label>
+            <input type="text" id="add-student-name" class="form-control" placeholder="Student Name" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Email</label>
+            <input type="email" id="add-student-email" class="form-control" placeholder="student@email.com" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Phone</label>
+            <input type="text" id="add-student-phone" class="form-control" placeholder="+1 555-0100" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Department</label>
+            <select id="add-student-dept" class="form-control" required></select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Course</label>
+            <select id="add-student-course" class="form-control" required></select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Year</label>
+            <select id="add-student-year" class="form-control" required>
+              <option value="1st Year">1st Year</option>
+              <option value="2nd Year">2nd Year</option>
+              <option value="3rd Year" selected>3rd Year</option>
+              <option value="4th Year">4th Year</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Semester</label>
+            <select id="add-student-sem" class="form-control" required>
+              <option value="Semester 1" selected>Semester 1</option>
+              <option value="Semester 2">Semester 2</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Section</label>
+            <select id="add-student-sec" class="form-control" required></select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Initial Password</label>
+            <input type="password" id="add-student-pw" class="form-control" placeholder="Default: Student@123" />
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline" onclick="UI.closeModal('add-student-modal')">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Student</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="../js/config.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/api.js"></script>
+  <script src="../js/common.js"></script>
+  <script src="../js/admin.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      AdminPortal.initStudentsPage();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mark Attendance - Faculty Portal</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/dashboard.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+
+  <div class="app-wrapper">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="logo-icon">👨‍🏫</div>
+        <div class="logo-text">Faculty Portal</div>
+      </div>
+      <ul class="sidebar-menu">
+        <li><a href="dashboard.html"><span>🏠</span> Dashboard</a></li>
+        <li><a href="mark-attendance.html" class="active"><span>📝</span> Mark Attendance</a></li>
+        <li><a href="history.html"><span>📜</span> History</a></li>
+        <li><a href="reports.html"><span>📊</span> Reports</a></li>
+        <li><a href="profile.html"><span>👤</span> Profile</a></li>
+        <li style="margin-top: 2rem;"><a href="#" onclick="Auth.logout()"><span>🚪</span> Logout</a></li>
+      </ul>
+      <div class="sidebar-footer">
+        <div class="user-profile-badge">
+          <div class="avatar" id="user-avatar">F</div>
+          <div class="user-info">
+            <div class="name" id="user-display-name">Faculty Name</div>
+            <div class="role" id="user-display-role">Faculty</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <div class="main-wrapper">
+      <header class="top-navbar">
+        <button class="hamburger-btn" id="hamburger-btn">☰</button>
+        <div class="page-title">
+          <h1>Mark Class Attendance</h1>
+          <p>Select session parameters & submit student present/absent states</p>
+        </div>
+        <div class="top-navbar-actions">
+          <button class="btn btn-outline btn-sm" onclick="Auth.logout()">Logout</button>
+        </div>
+      </header>
+
+      <main class="content-container">
+        <!-- Selection Filters Bar -->
+        <div class="filter-bar">
+          <div class="filter-group">
+            <label for="select-department">Department</label>
+            <select id="select-department" class="form-control" required>
+              <option value="">Select Department</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label for="select-class">Class / Section</label>
+            <select id="select-class" class="form-control" required>
+              <option value="">Select Class</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label for="select-subject">Subject</label>
+            <select id="select-subject" class="form-control" required>
+              <option value="">Select Subject</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label for="input-date">Date</label>
+            <input type="date" id="input-date" class="form-control" required />
+          </div>
+
+          <div class="filter-group">
+            <label for="select-period">Period / Hour</label>
+            <select id="select-period" class="form-control" required>
+              <option value="Period 1">Period 1 (09:00 - 10:00)</option>
+              <option value="Period 2">Period 2 (10:00 - 11:00)</option>
+              <option value="Period 3">Period 3 (11:15 - 12:15)</option>
+              <option value="Period 4">Period 4 (01:15 - 02:15)</option>
+              <option value="Period 5">Period 5 (02:15 - 03:15)</option>
+            </select>
+          </div>
+
+          <div style="margin-top: auto;">
+            <button id="load-students-btn" class="btn btn-primary" style="height: 42px;">Fetch Student List</button>
+          </div>
+        </div>
+
+        <!-- Student Attendance Marking Section -->
+        <div id="student-list-card" class="table-card" style="display: none;">
+          <div class="table-header">
+            <h3>Student Roster</h3>
+            <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+              <input type="text" id="search-student-input" class="form-control" placeholder="Search by name/roll..." style="width: 220px;" />
+              <button id="btn-all-present" class="btn btn-success btn-sm">Mark All Present</button>
+              <button id="btn-all-absent" class="btn btn-danger btn-sm">Mark All Absent</button>
+            </div>
+          </div>
+
+          <form id="submit-attendance-form">
+            <div class="table-responsive">
+              <table class="custom-table">
+                <thead>
+                  <tr>
+                    <th>Roll Number</th>
+                    <th>Student Name</th>
+                    <th>Attendance Status</th>
+                  </tr>
+                </thead>
+                <tbody id="mark-attendance-tbody">
+                  <!-- Dynamic Student Rows -->
+                </tbody>
+              </table>
+            </div>
+
+            <div style="padding: 1.5rem; text-align: right; background: #f8fafc; border-top: 1px solid var(--border);">
+              <button type="submit" class="btn btn-primary" style="padding: 0.75rem 2.5rem; font-size: 1rem;">
+                Submit Attendance Records
+              </button>
+            </div>
+          </form>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="../js/config.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/api.js"></script>
+  <script src="../js/common.js"></script>
+  <script src="../js/faculty.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      FacultyPortal.initMarkAttendance();
+    });
+  </script>
+</body>
+</html>
